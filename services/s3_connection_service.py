@@ -1,4 +1,5 @@
 import boto3
+import logging
 
 
 class S3ConnectionService(object):
@@ -6,6 +7,9 @@ class S3ConnectionService(object):
         self.access_key = "AKIAQSPNLRJYQFHUJLGS"
         self.secret = "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"
         self.bucket_name = "tech-interview-2513"
+        self.name = "S3-Connection-Service"
+        logging.basicConfig(level=logging.INFO)
+        self.logger = logging.getLogger("S3")
 
     @property
     def connect(self):
@@ -13,8 +17,8 @@ class S3ConnectionService(object):
         return s3_connection
 
     def __enter__(self):
-        print("connecting")
+        self.logger.info("Connect to s3")
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        print("disconnect")
+        self.logger.info("Disconnect from s3")
