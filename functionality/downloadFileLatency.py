@@ -1,4 +1,3 @@
-import os
 from services.s3_downloader_service import S3DownloaderService
 
 

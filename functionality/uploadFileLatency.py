@@ -1,4 +1,3 @@
-import os
 from services.s3_uploader_service import S3UploaderService
 
 
