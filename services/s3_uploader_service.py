@@ -1,3 +1,4 @@
+from botocore.exceptions import ClientError
 from services.s3_service_connection import S3ServiceConnection
 
 
@@ -6,9 +7,13 @@ class S3UploaderService(S3ServiceConnection):
     def __init__(self):
         super(S3UploaderService, self).__init__()
 
-    @staticmethod
-    def upload_file(file):
+    def upload_file(self, file):
         print(f"upload {file}")
+        try:
+            response = self.connect.upload_file(file, self.bucket_name, file)
+        except ClientError as e:
+            return False
+        return True
 
     def upload_files(self, files_to_upload):
         for file in files_to_upload:
