@@ -6,12 +6,14 @@ class S3DeleteService(S3ConnectionService):
 
     def __init__(self):
         super(S3DeleteService, self).__init__()
+        self.name = "S3-Delete"
 
     def delete_file(self, file):
-        print(f"delete {file}")
+        self.logger.info(f"delete file: {file}", self.get_module())
         try:
             response = self.connect.delete_object(Bucket=self.bucket_name, Key=file)
         except ClientError as e:
+            self.logger.error(f"{e}", self.get_module())
             return False
         return True
 
