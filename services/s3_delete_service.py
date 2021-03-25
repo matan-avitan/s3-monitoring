@@ -1,8 +1,8 @@
 from botocore.exceptions import ClientError
-from services.s3_service_connection import S3ServiceConnection
+from services.s3_connection_service import S3ConnectionService
 
 
-class S3DeleteService(S3ServiceConnection):
+class S3DeleteService(S3ConnectionService):
 
     def __init__(self):
         super(S3DeleteService, self).__init__()
