@@ -1,9 +1,9 @@
 from botocore.exceptions import ClientError
 
-from services.s3_service_connection import S3ServiceConnection
+from services.s3_connection_service import S3ConnectionService
 
 
-class S3DownloaderService(S3ServiceConnection):
+class S3DownloaderService(S3ConnectionService):
 
     def __init__(self):
         super(S3DownloaderService, self).__init__()
@@ -17,6 +17,6 @@ class S3DownloaderService(S3ServiceConnection):
             return False
         return True
 
-    def download_files(self, files_to_upload):
-        for file in files_to_upload:
+    def download_files(self, files_to_download):
+        for file in files_to_download:
             self.download_file(file)

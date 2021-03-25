@@ -1,7 +1,7 @@
 import boto3
 
 
-class S3ServiceConnection(object):
+class S3ConnectionService(object):
     def __init__(self):
         self.access_key = "AKIAQSPNLRJYQFHUJLGS"
         self.secret = "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"
