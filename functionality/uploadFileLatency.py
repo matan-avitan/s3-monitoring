@@ -10,7 +10,3 @@ class UploadFileLatency(S3UploaderService):
         files = ['asdasd.t', 'asdasd.t', 'qaweqw.b']
         self.upload_files(files)
 
-
-s3_upload = UploadFileLatency()
-with s3_upload:
-    s3_upload.run_functionality()
