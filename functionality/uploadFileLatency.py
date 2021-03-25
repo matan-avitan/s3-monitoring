@@ -8,6 +8,5 @@ class UploadFileLatency(S3UploaderService):
         super(UploadFileLatency, self).__init__()
 
     def run_functionality(self):
-        print(os.listdir())
         files = ['test_files/test.txt']
         self.upload_files(files)
