@@ -10,7 +10,7 @@ class S3DeleteService(S3ConnectionService):
     def delete_file(self, file):
         print(f"delete {file}")
         try:
-            response = self.connect.delete_object(self.bucket_name, file)
+            response = self.connect.delete_object(Bucket=self.bucket_name, Key=file)
         except ClientError as e:
             return False
         return True
