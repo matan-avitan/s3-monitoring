@@ -1,6 +1,6 @@
 from flask import Response
 from http import HTTPStatus
-
+from logs_api.app.resource.resource_utils import error_handler
 from flask_restful import reqparse
 from logs_api.app.resource.base_resource import BaseResource
 
@@ -14,6 +14,7 @@ parser.add_argument('test_name', type=str)
 
 class Logs(BaseResource):
 
+    @error_handler
     def post(self):
         args = parser.parse_args()
         self.logger.info(args['msg'], {'status': args['status'],
