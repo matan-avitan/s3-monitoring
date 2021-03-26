@@ -3,3 +3,5 @@ class Conf(object):
     DOWNLOADER_TIME_INTERVAL = 5
     DELETE_TIME_INTERVAL = 10
     HASH_TIME_INTERVAL = 10
+
+    PRIORITY = 1
