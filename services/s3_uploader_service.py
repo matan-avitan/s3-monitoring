@@ -9,9 +9,11 @@ class S3UploaderService(S3ConnectionService):
         self.name = "S3-Uploader"
 
     def upload_file(self, file):
-        self.logger.info(f"uploading file: {file}", self.get_module())
+        self.logger.info(f"start to upload file: {file}", self.get_module())
         try:
             response = self.connect.upload_file(file, self.bucket_name, file)
+            self.logger.info(f"finish to upload file: {file}", self.get_module())
+
         except ClientError as e:
             self.logger.error(f"{e}", self.get_module())
             return False
