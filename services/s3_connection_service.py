@@ -2,7 +2,7 @@ import boto3
 import logging
 
 
-class MyFormatter(logging.Formatter):
+class ServiceFormatter(logging.Formatter):
     def format(self, record):
         record.module = record.args.get('module')
         return super().format(record)
@@ -21,7 +21,7 @@ class S3ConnectionService(object):
         if not self.logger.handlers:
             self.logger.setLevel(logging.DEBUG)
             stream_handler = logging.StreamHandler()
-            formatter = MyFormatter(f'%(asctime)s - %(name)s - %(module)s - %(levelname)s - %(message)s')
+            formatter = ServiceFormatter(f'%(asctime)s - %(name)s - %(module)s - %(levelname)s - %(message)s')
             stream_handler.setFormatter(formatter)
             self.logger.addHandler(stream_handler)
 
