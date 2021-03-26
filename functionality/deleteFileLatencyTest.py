@@ -12,6 +12,6 @@ class DeleteFileLatency(S3DeleteService):
     @latency_check
     def run_functionality(self):
         self.logger.info("start deleting", self.get_extra_to_logger())
-        files = 'test_files/test.txt'
-        delete_status = 'Success' if self.delete_file(files) else 'Failed'
-        return self.name, delete_status
+        file = 'test_files/uploader_test/test.txt'
+        delete_status = 'Success' if self.delete_file(file) else 'Failed'
+        return self.test_id, self.name, delete_status

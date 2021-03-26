@@ -11,6 +11,6 @@ class UploadFileLatency(S3UploaderService):
     @latency_check
     def run_functionality(self):
         self.logger.info("start uploading test", self.get_extra_to_logger())
-        files = 'test_files/test.txt'
-        upload_status = 'Success' if self.upload_file(files) else 'Failed'
-        return self.name, upload_status
+        file = 'test_files/uploader_test/test.txt'
+        upload_status = 'Success' if self.upload_file(file) else 'Failed'
+        return self.test_id, self.name, upload_status
