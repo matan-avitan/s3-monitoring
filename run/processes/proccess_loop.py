@@ -15,7 +15,11 @@ class ProcessLoop(object):
         loop.run()
 
     def process_loop(self, scheduler_loop, obj):
-        s3_obj = obj()
-        with s3_obj as s3:
-            s3.run_functionality()
-        loop.enter(self.interval, self.priority, ProcessLoop.process_loop, (self, scheduler_loop, obj))
+        try:
+            s3_obj = obj()
+            with s3_obj as s3:
+                s3.run_functionality()
+        except Exception as e:
+            print(str(e))
+        finally:
+            loop.enter(self.interval, self.priority, ProcessLoop.process_loop, (self, scheduler_loop, obj))

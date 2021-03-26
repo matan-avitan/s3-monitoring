@@ -25,15 +25,19 @@ class S3ConnectionService(object):
             self.logger.setLevel(logging.DEBUG)
             stream_handler = logging.StreamHandler()
             formatter = ServiceFormatter(
-                f'%(asctime)s - %(name)s -%(test_id)s- %(module)s - %(levelname)s - %(message)s')
+                '%(asctime)s - %(name)s -%(test_id)s- %(module)s - %(levelname)s - %(message)s')
             stream_handler.setFormatter(formatter)
             self.logger.addHandler(stream_handler)
 
     @property
     def connect(self):
         self.logger.info("Connect to S3", self.get_extra_to_logger())
-        s3_connection = boto3.client('s3', aws_access_key_id=self.access_key, aws_secret_access_key=self.secret)
-        return s3_connection
+        try:
+            s3_connection = boto3.client('s3', aws_access_key_id=self.access_key, aws_secret_access_key=self.secret)
+            return s3_connection
+        except Exception as e:
+            self.logger.error("Can't connect to S3 server", self.get_extra_to_logger())
+            raise ConnectionError
 
     def get_extra_to_logger(self):
         return {"module": self.name, "test_id": self.test_id}

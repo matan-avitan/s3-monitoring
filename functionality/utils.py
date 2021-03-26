@@ -18,3 +18,4 @@ def latency_check(function):
         requests.post('http://127.0.0.1:8080/api/log/', log)
 
     return wrapper
+
