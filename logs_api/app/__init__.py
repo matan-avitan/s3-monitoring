@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_restful import Api
+from logs_api.app.resource.logs import Logs
 
 
 def create_app():
@@ -7,5 +8,5 @@ def create_app():
     api = Api(app)
 
     # routes
-
+    api.add_resource(Logs, "/api/log/")
     return app
