@@ -1,3 +1,6 @@
+from flask import Response
+from http import HTTPStatus
+
 from flask_restful import reqparse
 from logs_api.app.resource.base_resource import BaseResource
 
@@ -16,4 +19,4 @@ class Logs(BaseResource):
         self.logger.info(args['msg'], {'status': args['status'],
                                        'test_id': args['test_id'],
                                        'test_name': args['test_name']})
-        return {}
+        return Response({"result": "success enter new log"}, status=HTTPStatus.CREATED)
