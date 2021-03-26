@@ -1,5 +1,4 @@
 from botocore.exceptions import ClientError
-
 from services.s3_connection_service import S3ConnectionService
 
 
@@ -15,9 +14,8 @@ class S3DownloaderService(S3ConnectionService):
             with open(file, 'wb+') as f:
                 self.connect.download_fileobj(self.bucket_name, file, f)
             self.logger.info(f"finish to download file: {file}", self.get_extra_to_logger())
-        except ClientError as e:
+        except (ClientError, ConnectionError) as e:
             self.logger.error(f"{e}", self.get_extra_to_logger())
 
             return False
         return True
-

@@ -11,11 +11,10 @@ class S3UploaderService(S3ConnectionService):
     def upload_file(self, file):
         self.logger.info(f"start to upload file: {file}", self.get_extra_to_logger())
         try:
-            response = self.connect.upload_file(file, self.bucket_name, file)
+            self.connect.upload_file(file, self.bucket_name, file)
             self.logger.info(f"finish to upload file: {file}", self.get_extra_to_logger())
 
-        except ClientError as e:
+        except (ClientError, ConnectionError) as e:
             self.logger.error(f"{e}", self.get_extra_to_logger())
             return False
         return True
-

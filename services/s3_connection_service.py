@@ -1,6 +1,8 @@
 import uuid
 import boto3
 import logging
+from services.services_utils import try_get_env
+from services.services_conf import ServicesConf
 
 
 class ServiceFormatter(logging.Formatter):
@@ -12,9 +14,9 @@ class ServiceFormatter(logging.Formatter):
 
 class S3ConnectionService(object):
     def __init__(self):
-        self.access_key = "AKIAQSPNLRJYQFHUJLGS"
-        self.secret = "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"
-        self.bucket_name = "tech-interview-2513"
+        self.access_key = try_get_env("ACCESS_KEY", ServicesConf.ACCESS_KEY)
+        self.secret = try_get_env("SECRET", ServicesConf.SECRET)
+        self.bucket_name = ServicesConf.BUCKET_NAME
         self.name = "S3-Connection-Service"
         self.logger = logging.getLogger("S3")
         self.test_id = str(uuid.uuid4())
@@ -24,16 +26,19 @@ class S3ConnectionService(object):
         if not self.logger.handlers:
             self.logger.setLevel(logging.DEBUG)
             stream_handler = logging.StreamHandler()
-            formatter = ServiceFormatter(
-                f'%(asctime)s - %(name)s -%(test_id)s- %(module)s - %(levelname)s - %(message)s')
+            formatter = ServiceFormatter(ServicesConf.FORMATTER)
             stream_handler.setFormatter(formatter)
             self.logger.addHandler(stream_handler)
 
     @property
     def connect(self):
         self.logger.info("Connect to S3", self.get_extra_to_logger())
-        s3_connection = boto3.client('s3', aws_access_key_id=self.access_key, aws_secret_access_key=self.secret)
-        return s3_connection
+        try:
+            s3_connection = boto3.client('s3', aws_access_key_id=self.access_key, aws_secret_access_key=self.secret)
+            return s3_connection
+        except Exception as e:
+            self.logger.error("Can't connect to S3 server", self.get_extra_to_logger())
+            raise ConnectionError
 
     def get_extra_to_logger(self):
         return {"module": self.name, "test_id": self.test_id}
