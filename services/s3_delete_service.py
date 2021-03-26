@@ -19,6 +19,3 @@ class S3DeleteService(S3ConnectionService):
             return False
         return True
 
-    def delete_files(self, files_to_delete):
-        for file in files_to_delete:
-            self.delete_file(file)
