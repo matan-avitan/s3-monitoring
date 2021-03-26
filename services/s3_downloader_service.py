@@ -20,4 +20,3 @@ class S3DownloaderService(S3ConnectionService):
 
             return False
         return True
-
