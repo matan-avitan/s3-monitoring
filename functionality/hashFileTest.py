@@ -1,8 +1,8 @@
 import hashlib
 from functionality.utils import latency_check
-
 from services.s3_downloader_service import S3DownloaderService
 from services.s3_uploader_service import S3UploaderService
+from functionality.functionality_conf import FunctionalityConf
 
 
 class HashFileTest(S3DownloaderService, S3UploaderService):
@@ -22,7 +22,7 @@ class HashFileTest(S3DownloaderService, S3UploaderService):
     @latency_check
     def run_functionality(self):
         self.logger.info("start hash test", self.get_extra_to_logger())
-        file = 'test_files/hash_test/test.txt'
+        file = FunctionalityConf.HASH_FILE
         start_hash_res = self.hash_file(file)
         self.upload_file(file)
         self.download_file(file)

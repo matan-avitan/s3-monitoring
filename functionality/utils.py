@@ -1,4 +1,3 @@
-import uuid
 import requests
 from datetime import datetime
 
