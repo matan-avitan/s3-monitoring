@@ -3,7 +3,7 @@ import logging
 from flask_restful import Resource
 
 
-class MyFormatter(logging.Formatter):
+class LogsFormatter(logging.Formatter):
     def format(self, record):
         record.status = record.args.get('status')
         record.test_id = record.args.get('test_id')
@@ -18,6 +18,6 @@ class BaseResource(Resource):
         if not self.logger.handlers:
             self.logger.setLevel(logging.INFO)
             file_handler = logging.FileHandler('logs.txt')
-            formatter = MyFormatter(f'%(asctime)s - %(test_id)s - %(test_name)s - %(status)s - %(message)s')
+            formatter = LogsFormatter(f'%(asctime)s - %(test_id)s - %(test_name)s - %(status)s - %(message)s')
             file_handler.setFormatter(formatter)
             self.logger.addHandler(file_handler)
