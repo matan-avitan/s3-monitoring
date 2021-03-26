@@ -15,5 +15,4 @@ class Logs(BaseResource):
         args = parser.parse_args()
         log_msg = f"{args['insertion_time']} - {args['status']} - {args['msg']}"
         self.logger.info(log_msg, {'status': args['status']})
-        # print(log_msg)
         return {}
