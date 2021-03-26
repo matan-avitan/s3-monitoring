@@ -5,9 +5,10 @@ from flask_restful import Resource
 
 class LogsFormatter(logging.Formatter):
     def format(self, record):
-        record.status = record.args.get('status')
         record.test_id = record.args.get('test_id')
         record.test_name = record.args.get('test_name')
+        record.status = record.args.get('status')
+
         return super().format(record)
 
 

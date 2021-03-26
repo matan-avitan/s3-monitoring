@@ -12,7 +12,7 @@ def latency_check(function):
             'test_id': test_id,
             'test_name': name,
             'status': status,
-            'msg': f'the process take - {process_time}'
+            'msg': f'the process take: {process_time}'
         }
 
         result = requests.post('http://127.0.0.1:8080/api/log/', log)
