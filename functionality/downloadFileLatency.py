@@ -9,10 +9,10 @@ class DownloadFileLatency(S3DownloaderService):
         super(DownloadFileLatency, self).__init__()
         self.name = 'S3-Download-Latency'
 
-
     @latency_check
     def run_functionality(self):
         self.logger.info("start download", {'module': self.name})
 
-        files = ['test_files/test.txt']
-        self.download_files(files)
+        files = 'test_files/test.txt'
+        download_status = 'Success' if self.download_file(files) else 'Failed'
+        return self.name, download_status

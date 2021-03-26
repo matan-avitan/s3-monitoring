@@ -19,6 +19,3 @@ class S3UploaderService(S3ConnectionService):
             return False
         return True
 
-    def upload_files(self, files_to_upload):
-        for file in files_to_upload:
-            self.upload_file(file)

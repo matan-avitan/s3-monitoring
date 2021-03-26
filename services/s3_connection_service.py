@@ -18,11 +18,12 @@ class S3ConnectionService(object):
         self.setup_logger()
 
     def setup_logger(self):
-        self.logger.setLevel(logging.DEBUG)
-        stream_handler = logging.StreamHandler()
-        formatter = MyFormatter(f'%(asctime)s - %(name)s - %(module)s - %(levelname)s - %(message)s')
-        stream_handler.setFormatter(formatter)
-        self.logger.addHandler(stream_handler)
+        if not self.logger.handlers:
+            self.logger.setLevel(logging.DEBUG)
+            stream_handler = logging.StreamHandler()
+            formatter = MyFormatter(f'%(asctime)s - %(name)s - %(module)s - %(levelname)s - %(message)s')
+            stream_handler.setFormatter(formatter)
+            self.logger.addHandler(stream_handler)
 
     @property
     def connect(self):

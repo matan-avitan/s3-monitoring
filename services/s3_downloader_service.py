@@ -21,6 +21,3 @@ class S3DownloaderService(S3ConnectionService):
             return False
         return True
 
-    def download_files(self, files_to_download):
-        for file in files_to_download:
-            self.download_file(file)
