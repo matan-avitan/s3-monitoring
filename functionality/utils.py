@@ -15,7 +15,8 @@ def latency_check(function):
             'msg': f'the process take - {process_time}'
         }
 
-        requests.post('http://127.0.0.1:8080/api/log/', log)
+        result = requests.post('http://127.0.0.1:8080/api/log/', log)
+        if result.status_code != 201:
+            raise Exception(result.reason)
 
     return wrapper
-
