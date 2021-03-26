@@ -11,9 +11,8 @@ class S3DeleteService(S3ConnectionService):
     def delete_file(self, file):
         self.logger.info(f"start to delete file: {file}", self.get_extra_to_logger())
         try:
-            response = self.connect.delete_object(Bucket=self.bucket_name, Key=file)
+            self.connect.delete_object(Bucket=self.bucket_name, Key=file)
             self.logger.info(f"finish to delete file: {file}", self.get_extra_to_logger())
-
         except (ClientError, ConnectionError) as e:
             self.logger.error(f"{e}", self.get_extra_to_logger())
             return False
