@@ -5,9 +5,8 @@ from datetime import datetime
 
 def latency_check(function):
     def wrapper(*args, **kwargs):
-        test_id = str(uuid.uuid4())
         start_time = datetime.now()
-        name, status = function(*args, **kwargs)
+        name, status, test_id = function(*args, **kwargs)
         end_time = datetime.now()
         process_time = end_time - start_time
         log = {
