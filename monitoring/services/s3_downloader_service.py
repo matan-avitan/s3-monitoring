@@ -12,9 +12,10 @@ class S3DownloaderService(S3ConnectionService):
         self.logger.info(f"start to download file: {file}", self.get_extra_to_logger())
         try:
             with open(file, 'wb+') as f:
+                self.logger.info("try to download", self.get_extra_to_logger())
                 self.connect.download_fileobj(self.bucket_name, file, f)
             self.logger.info(f"finish to download file: {file}", self.get_extra_to_logger())
-        except (ClientError, ConnectionError) as e:
+        except Exception as e:
             self.logger.error(f"{e}", self.get_extra_to_logger())
 
             return False

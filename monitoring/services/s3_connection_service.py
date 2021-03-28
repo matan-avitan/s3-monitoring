@@ -1,5 +1,5 @@
-import uuid
 import boto3
+import uuid
 import logging
 from services.services_utils import try_get_env
 from services.services_conf import ServicesConf
@@ -37,7 +37,7 @@ class S3ConnectionService(object):
             s3_connection = boto3.client('s3', aws_access_key_id=self.access_key, aws_secret_access_key=self.secret)
             return s3_connection
         except Exception as e:
-            self.logger.error("Can't connect to S3 server", self.get_extra_to_logger())
+            self.logger.error(f"Can't connect to S3 server - error:{str(e)}", self.get_extra_to_logger())
             raise ConnectionError
 
     def get_extra_to_logger(self):

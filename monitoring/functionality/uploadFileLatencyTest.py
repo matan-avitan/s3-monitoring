@@ -1,3 +1,4 @@
+import requests
 from functionality.utils import latency_check
 from services.s3_uploader_service import S3UploaderService
 from functionality.functionality_conf import FunctionalityConf
