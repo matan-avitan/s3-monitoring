@@ -6,6 +6,9 @@ from services.services_conf import ServicesConf
 
 
 class ServiceFormatter(logging.Formatter):
+    """
+    Formatter for all the monitoring
+    """
     def format(self, record):
         record.module = record.args.get('module')
         record.test_id = record.args.get('test_id')
@@ -13,6 +16,12 @@ class ServiceFormatter(logging.Formatter):
 
 
 class S3ConnectionService(object):
+    """
+    The base service with s3 -
+    everyone need to connect to it so they will inheritance from it.
+    The service try to access s3 and return connection object.
+    it also setup a logger.
+    """
     def __init__(self):
         self.access_key = try_get_env("ACCESS_KEY", ServicesConf.ACCESS_KEY)
         self.secret = try_get_env("SECRET", ServicesConf.SECRET)

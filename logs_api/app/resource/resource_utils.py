@@ -3,6 +3,10 @@ from http import HTTPStatus
 
 
 def error_handler(func):
+    """
+    Handle with error and abort with internal server error
+    """
+
     def handler(*args, **kwargs):
         try:
             return func(*args, **kwargs)

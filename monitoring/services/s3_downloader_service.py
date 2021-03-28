@@ -1,8 +1,10 @@
-from botocore.exceptions import ClientError
 from services.s3_connection_service import S3ConnectionService
 
 
 class S3DownloaderService(S3ConnectionService):
+    """
+    This class access to s3 object and download files
+    """
 
     def __init__(self):
         super(S3DownloaderService, self).__init__()
