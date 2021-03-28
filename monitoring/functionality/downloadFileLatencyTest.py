@@ -4,6 +4,11 @@ from functionality.functionality_conf import FunctionalityConf
 
 
 class DownloadFileLatency(S3DownloaderService):
+    """
+    try to download a file with download service.
+    return the status.
+    it cover with latency check decorator that send to logs_api the result with how log it takes
+    """
 
     def __init__(self):
         super(DownloadFileLatency, self).__init__()

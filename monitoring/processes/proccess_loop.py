@@ -5,6 +5,10 @@ loop = sched.scheduler(time.time, time.sleep)
 
 
 class ProcessLoop(object):
+    """
+    The is class that create basic loop with interval and priority.
+    when it start it run the specific s3 object and run it functionality (monitor test)
+    """
 
     def __init__(self, interval, priority):
         self.interval = interval

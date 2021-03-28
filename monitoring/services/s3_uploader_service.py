@@ -1,9 +1,10 @@
-from botocore.exceptions import ClientError
 from services.s3_connection_service import S3ConnectionService
 
 
 class S3UploaderService(S3ConnectionService):
-
+    """
+    This class connect to s3 and upload a file
+    """
     def __init__(self):
         super(S3UploaderService, self).__init__()
         self.name = "S3-Uploader"

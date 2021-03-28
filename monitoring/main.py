@@ -10,6 +10,9 @@ def process_test(obj, interval):
 
 
 if __name__ == "__main__":
+    """
+    Create 4 process for monitoring s3
+    """
     processes = [Process(target=process_test, args=(UploadFileLatency, Conf.UPLOADER_TIME_INTERVAL)),
                  Process(target=process_test, args=(DownloadFileLatency, Conf.DOWNLOADER_TIME_INTERVAL)),
                  Process(target=process_test, args=(DeleteFileLatency, Conf.DELETE_TIME_INTERVAL)),

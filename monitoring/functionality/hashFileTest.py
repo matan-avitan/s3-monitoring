@@ -6,6 +6,12 @@ from functionality.functionality_conf import FunctionalityConf
 
 
 class HashFileTest(S3DownloaderService, S3UploaderService):
+    """
+    try to check if a file that we upload and then download is the same one. (use both download and upload service)
+    it hash at the first time, after it upload it then download it and hash it again.
+    after that it check that the hash is the same one.
+    it cover with latency check decorator that send to logs_api the result with how log it takes
+    """
 
     def __init__(self):
         super(HashFileTest, self).__init__()
