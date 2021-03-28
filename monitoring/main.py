@@ -1,7 +1,7 @@
-from run.conf import Conf
 from functionality import *
+from conf import Conf
 from multiprocessing import Process
-from run.processes.proccess_loop import ProcessLoop
+from processes.proccess_loop import ProcessLoop
 
 
 def process_test(obj, interval):

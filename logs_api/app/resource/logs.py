@@ -1,8 +1,8 @@
 from flask import Response
 from http import HTTPStatus
-from logs_api.app.resource.resource_utils import error_handler
+from app.resource.resource_utils import error_handler
 from flask_restful import reqparse
-from logs_api.app.resource.base_resource import BaseResource
+from app.resource.base_resource import BaseResource
 
 parser = reqparse.RequestParser()
 
