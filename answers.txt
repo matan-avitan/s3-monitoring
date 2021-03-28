@@ -1,0 +1,62 @@
+Answers
+---------------
+
+
+a. What was your thinking in designing the architecture of your
+program?
+
+When I was need to decide what will be the architecture,
+I started from study S3 bucket.
+After that I understand that there are need to be a connection to the S3 in each test.
+Some monitors needs to upload and some need to download, delete or combination of them.
+So, the base class needs to be a connection service, and all the other services need to inheritage from it.
+after that there are 3 functionality that I impleament each one and they derive from ConnectionService.
+for now we have the services that S3 give us.
+So, after that I created the functionality.
+There are 4 Test that I created:
+1. upload file and test latency
+2. download file and test latency
+3. delete file and test latency
+4. take a file and upload and after that download and check that this is the same file (with hash)
+
+each functionality need to write to the same log file, So I create logs_api - simple api flask app.
+each service write the data with post request to this api.
+The api work with multi threads and get each request and parse it and write it to logs.txt file.
+
+To run those functionality in parallel and in infinate loop we need to use multi proccessing and scheduler.
+At the first I created base class for each proccess, that implement scheduler and run the functionality.
+
+for running this program you need to run the flask server and run the run_functionality.py script
+
+
+
+
+
+
+b. Why did you choose the 4 functionalities of S3 that you chose?
+
+There are 3 basic and common useage in S3.
+1. You store files - upload
+2. You download files
+3. You delete files that you don't need in the bucket.
+
+So, I need to test each of them, and test if they worked and how long it take to do that (latency).
+after that I want to know that S3 don't change anything in the file we store,
+so I hash a file and save it, upload the file and download it, and when I download it I check that
+the hash from the endpoint is the same as from the start.
+So I think that this is very important to check that the file don't change.
+
+
+
+
+
+c. Why did you choose to structure your log file the way that you
+did?
+
+I structure my logs in this way because I think it it very clear.
+You have the time that the logs was wrote, you have the monitor name,
+you have the test id - to check in the service log, you have the status of this monitor - success/fail
+and you have the time that this was taken.
+
+each part give you important information!
+

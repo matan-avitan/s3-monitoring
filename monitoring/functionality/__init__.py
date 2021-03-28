@@ -1,0 +1,4 @@
+from functionality.uploadFileLatencyTest import UploadFileLatency
+from functionality.downloadFileLatencyTest import DownloadFileLatency
+from functionality.deleteFileLatencyTest import DeleteFileLatency
+from functionality.hashFileTest import HashFileTest
