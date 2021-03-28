@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+
+  logs_api:
+    build: ./logs_api
+    container_name: logs_api
+    restart: always
+    expose:
+      - 8080
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - "80:80"
