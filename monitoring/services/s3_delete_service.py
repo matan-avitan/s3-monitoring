@@ -1,10 +1,9 @@
-from botocore.exceptions import ClientError
 from services.s3_connection_service import S3ConnectionService
 
 
 class S3DeleteService(S3ConnectionService):
     """
-    Delete service - connect to s3 and delete specific file it get  
+    Delete service - connect to s3 and delete specific file it get
     """
 
     def __init__(self):

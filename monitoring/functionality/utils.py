@@ -3,6 +3,11 @@ from datetime import datetime
 
 
 def latency_check(function):
+    """
+    The function cover all monitors.
+    it put start time var, run the monitor and then put end time var.
+    calculate the diff and then send to api_logs the data from monitoring.
+    """
     def wrapper(*args, **kwargs):
         start_time = datetime.now()
         name, status, test_id = function(*args, **kwargs)
