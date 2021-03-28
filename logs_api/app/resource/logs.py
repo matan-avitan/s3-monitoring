@@ -13,7 +13,9 @@ parser.add_argument('test_name', type=str)
 
 
 class Logs(BaseResource):
-
+    """
+    Resource that only get logs with post request and add it to logs.txt file
+    """
     @error_handler
     def post(self):
         args = parser.parse_args()

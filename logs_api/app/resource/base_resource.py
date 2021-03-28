@@ -4,6 +4,10 @@ from flask_restful import Resource
 
 
 class LogsFormatter(logging.Formatter):
+    """
+    new formatter for logs
+    """
+
     def format(self, record):
         record.test_id = record.args.get('test_id')
         record.test_name = record.args.get('test_name')
@@ -13,6 +17,11 @@ class LogsFormatter(logging.Formatter):
 
 
 class BaseResource(Resource):
+    """
+    This is the base resource,
+    all the resources need to inheritance from it and get logger instance
+    """
+
     LOG_FORMAT = '%(asctime)s - %(test_id)s - %(test_name)s - %(status)s - %(message)s'
 
     def __init__(self):
